@@ -1,0 +1,19 @@
+
+
+<MyCanbasWidget>:
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        MyPaintWidget:
+            id: paint_area
+
+        Button:
+            id: button1
+            text: "Clear"
+            ont_size: 30
+            on_release: app.clear_canvas()
+            
+            #on_release: root.clear_canvas()
+            
+
