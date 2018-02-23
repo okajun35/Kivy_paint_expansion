@@ -40,7 +40,7 @@ class MyPaintWidget(Widget):
 class MyCanbasWidget(Widget):
 
     def clear_canvas(self):
-        print(self.player1)
+  
         #self.painter.canvas.clear()
         MyPaintWidget.clear_canvas(self)
 
@@ -58,14 +58,18 @@ class MyPaintApp(App):
         self.painter = MyCanbasWidget()
         #clearbtn = Button(text='Clear')
         #clearbtn.bind(on_release=self.clear_canvas)
-        parent.add_widget(self.painter)
+        
+        #parent.add_widget(self.painter)
+        
         #parent.add_widget(clearbtn)
-        return parent
-
+        
+        #return parent
+        return self.painter
 
     #def clear_canvas(self, obj):
     def clear_canvas(self):
-        print(self.paint_id)
+        # 削除
+        #print(self.paint_id)
         self.painter.ids['paint_area'].canvas.clear()
 #        saved = self.children[:]
 #        self.painter.canvas.clear()

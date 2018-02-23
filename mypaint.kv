@@ -3,17 +3,30 @@
 <MyCanbasWidget>:
     BoxLayout:
         orientation: 'vertical'
-        size: root.size
+        height: root.height
+
+        width: root.width
 
         MyPaintWidget:
             id: paint_area
-
-        Button:
-            id: button1
-            text: "Clear"
-            ont_size: 30
-            on_release: app.clear_canvas()
+            size_hint_y: 0.8
             
-            #on_release: root.clear_canvas()
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: 0.2
+            
+            Button:
+                id: button1
+                text: "Clear"
+                ont_size: 30
+                on_release: app.clear_canvas()
+            
+                #on_release: root.clear_canvas()
             
 
+            Label:
+                text: "Good Morning"
+            Label:
+                text: "Hello"
+            Label:
+                text: "Good Evening"
