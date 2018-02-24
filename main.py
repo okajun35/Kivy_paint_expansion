@@ -2,11 +2,24 @@
 
 from random import random
 from kivy.app import App
+from kivy.config import Config
+
+# 起動時の解像度の設定
+Config.set('graphics', 'width', '1024')
+Config.set('graphics', 'height', '768')  # 16:9
+Config.set('graphics', 'resizable', False)  # ウインドウリサイズ禁止
+
+
+
 from kivy.uix.widget import Widget
 from kivy.uix.button import Button
 from kivy.graphics import Color, Ellipse, Line
-from kivy.config import Config
 from kivy.properties import ObjectProperty
+
+
+from kivy.utils import get_color_from_hex   # 色の16進数表示を可能にする
+from kivy.core.window import Window
+
 
 
 class MyPaintWidget(Widget):
@@ -82,6 +95,5 @@ class MyPaintApp(App):
         #self.player1.clear_canvas()
 
 if __name__ == '__main__':
-    Config.set('graphics', 'width', '960')
-    Config.set('graphics', 'height', '540')  # 16:9
+    Window.clearcolor = get_color_from_hex('#ffffff')   # ウィンドウの色を白色に変更する
     MyPaintApp().run()
