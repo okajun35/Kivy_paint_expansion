@@ -25,7 +25,7 @@ from kivy.core.window import Window
 
 class MyPaintWidget(Widget):
     #pass
-    
+    last_color = '' # 画面クリアを押された場合の最後の色
     
     def on_touch_down(self, touch):
         if Widget.on_touch_down(self, touch):
@@ -47,14 +47,6 @@ class MyPaintWidget(Widget):
         self.canvas.add(Color(*new_color))
 
 
-    def clear_canvas(self):
-        print("MyPaintWidget clear")
-        saved = self.children[:]
-        self.clear_widgets()
-#        self.canvas.clear()
-#        for widget in saved:
-#            self.add_widget(widget)
-        #self.set_color(self.last_color)
 
 
 
@@ -79,6 +71,11 @@ class MyPaintApp(App):
     def build(self):
         parent = Widget()
         self.painter = MyCanvasWidget()
+
+        # 起動時の色の設定を行う
+        self.painter.ids['paint_area'].set_color(
+            get_color_from_hex('#000000'))  #黒色を設定
+
         #clearbtn = Button(text='Clear')
         #clearbtn.bind(on_release=self.clear_canvas)
         
@@ -94,6 +91,8 @@ class MyPaintApp(App):
         # 削除
         #print(self.paint_id)
         self.painter.ids['paint_area'].canvas.clear()
+        self.painter.ids['paint_area'].set_color(self.painter.ids['paint_area'].last_color)
+
 #        saved = self.children[:]
 #        self.painter.canvas.clear()
 
