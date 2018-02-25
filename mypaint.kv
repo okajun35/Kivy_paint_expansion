@@ -29,12 +29,18 @@
                 group: 'color'
                 state: 'down'
                 background_color: hex_color('#000000')
+                background_normal: 'color_button_normal.png'
+                background_down: 'color_button_down.png'
+                border: (5, 5, 5, 5)
                 on_release: app.painter.ids['paint_area'].set_color(self.background_color)
 
             ToggleButton:
                 text: "red "
                 group: 'color'
                 background_color: hex_color('#ff0000')
+                background_normal: 'color_button_normal.png'
+                background_down: 'color_button_down.png'
+                border: (3, 3, 3, 3)
                 on_release: app.painter.ids['paint_area'].set_color(self.background_color)
                 
             ToggleButton:
