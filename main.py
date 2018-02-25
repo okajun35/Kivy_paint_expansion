@@ -19,7 +19,7 @@ from kivy.properties import ObjectProperty
 
 from kivy.utils import get_color_from_hex   # 色の16進数表示を可能にする
 from kivy.core.window import Window
-
+#:import color kivy.utils.get_color_from_hex
 
 
 class MyPaintWidget(Widget):
@@ -33,13 +33,18 @@ class MyPaintWidget(Widget):
 
         color = (random(), 1, 1)
         with self.canvas:
-            Color(*color, mode='hsv')
+            #Color(*color, mode='hsv')
             d = 30.
             Ellipse(pos=(touch.x - d / 2, touch.y - d / 2), size=(d, d))
             touch.ud['line'] = Line(points=(touch.x, touch.y))
 
     def on_touch_move(self, touch):
         touch.ud['line'].points += [touch.x, touch.y]
+
+    def set_color(self, new_color):
+        self.last_color = new_color
+        self.canvas.add(Color(*new_color))
+
 
     def clear_canvas(self):
         print("MyPaintWidget clear")
