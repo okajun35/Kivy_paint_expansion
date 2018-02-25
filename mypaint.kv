@@ -1,6 +1,12 @@
 #:import hex_color kivy.utils.get_color_from_hex
 
-<MyCanbasWidget>:
+<ColorButton>:
+    background_normal: 'color_button_normal.png'
+    background_down: 'color_button_down.png'
+    border: (5, 5, 5, 5)
+    on_release: app.painter.ids['paint_area'].set_color(self.background_color)
+
+<MyCanvasWidget>:
     BoxLayout:
         orientation: 'vertical'
         height: root.height
@@ -24,45 +30,28 @@
                 #on_release: root.clear_canvas()
             
 
-            ToggleButton:
+            ColorButton:
                 text: "black "
-                group: 'color'
                 state: 'down'
                 background_color: hex_color('#000000')
-                background_normal: 'color_button_normal.png'
-                background_down: 'color_button_down.png'
-                border: (5, 5, 5, 5)
-                on_release: app.painter.ids['paint_area'].set_color(self.background_color)
 
-            ToggleButton:
+
+            ColorButton:
                 text: "red "
-                group: 'color'
                 background_color: hex_color('#ff0000')
-                background_normal: 'color_button_normal.png'
-                background_down: 'color_button_down.png'
-                border: (3, 3, 3, 3)
-                on_release: app.painter.ids['paint_area'].set_color(self.background_color)
                 
-            ToggleButton:
+            ColorButton:
                 text: "biue "
-                group: 'color'
                 background_color: hex_color('#0000ff')
-                on_release: app.painter.ids['paint_area'].set_color(self.background_color)
 
-            ToggleButton:
+            ColorButton:
                 text: "green "
-                group: 'color'
                 background_color: hex_color('#008000')
-                on_release: app.painter.ids['paint_area'].set_color(self.background_color)
                 
-            ToggleButton:
+            ColorButton:
                 text: "orange"
-                group: 'color'
                 background_color: hex_color('#ff4500')
-                on_release: app.painter.ids['paint_area'].set_color(self.background_color)
                 
-            ToggleButton:
+            ColorButton:
                 text: "purple"
-                group: 'color'
                 background_color: hex_color('#800080')
-                on_release: app.painter.ids['paint_area'].set_color(self.background_color)

@@ -15,7 +15,8 @@ from kivy.uix.widget import Widget
 from kivy.uix.button import Button
 from kivy.graphics import Color, Ellipse, Line
 from kivy.properties import ObjectProperty
-
+from kivy.uix.behaviors import ToggleButtonBehavior
+from kivy.uix.togglebutton import ToggleButton
 
 from kivy.utils import get_color_from_hex   # 色の16進数表示を可能にする
 from kivy.core.window import Window
@@ -55,7 +56,11 @@ class MyPaintWidget(Widget):
 #            self.add_widget(widget)
         #self.set_color(self.last_color)
 
-class MyCanbasWidget(Widget):
+
+
+
+
+class MyCanvasWidget(Widget):
 
     def clear_canvas(self):
   
@@ -73,7 +78,7 @@ class MyPaintApp(App):
         
     def build(self):
         parent = Widget()
-        self.painter = MyCanbasWidget()
+        self.painter = MyCanvasWidget()
         #clearbtn = Button(text='Clear')
         #clearbtn.bind(on_release=self.clear_canvas)
         
@@ -98,6 +103,18 @@ class MyPaintApp(App):
 #            self.add_widget(widget)
 
         #self.player1.clear_canvas()
+
+class ColorButton(ToggleButton):
+    def _do_press(self):
+        '''
+        何も押されていない状態で設定が解除されるのを防ぐためToggleButtonの関数を継承して変更する 
+        Source code for kivy.uix.behaviors.button
+        https://kivy.org/docs/_modules/kivy/uix/behaviors/button.html
+        '''
+    
+        if self.state == 'normal':
+            # ボタンを押されてない場合は状態を変更する
+            ToggleButtonBehavior._do_press(self)
 
 if __name__ == '__main__':
     Window.clearcolor = get_color_from_hex('#ffffff')   # ウィンドウの色を白色に変更する
