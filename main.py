@@ -20,14 +20,6 @@ from kivy.uix.togglebutton import ToggleButton
 
 from kivy.utils import get_color_from_hex   # 色の16進数表示を可能にする
 from kivy.core.window import Window
-#:import color kivy.utils.get_color_from_hex
-
-
-#・線の太さの設定
-#・起動時の色の設定
-#・クリアー時の色の設定
-#・保存
-#・消しゴム
 
 
 class MyPaintWidget(Widget):
@@ -43,8 +35,8 @@ class MyPaintWidget(Widget):
         color = (random(), 1, 1)
         with self.canvas:
             #Color(*color, mode='hsv')
-            d = 30.
-            Ellipse(pos=(touch.x - d / 2, touch.y - d / 2), size=(d, d))
+            #d = 30.
+            #Ellipse(pos=(touch.x - d / 2, touch.y - d / 2), size=(d, d))
             touch.ud['line'] = Line(points=(touch.x, touch.y), width=self.line_width)
 
     def set_line_width(self, line_width=3):
@@ -88,6 +80,7 @@ class MyPaintApp(App):
         self.painter.ids['paint_area'].set_color(
             get_color_from_hex('#000000'))  #黒色を設定
 
+
         #clearbtn = Button(text='Clear')
         #clearbtn.bind(on_release=self.clear_canvas)
         
@@ -103,17 +96,12 @@ class MyPaintApp(App):
         # 削除
         #print(self.paint_id)
         self.painter.ids['paint_area'].canvas.clear()
-        self.painter.ids['paint_area'].set_color(self.painter.ids['paint_area'].last_color)
+        #self.painter.ids['paint_area'].set_color(self.painter.ids['paint_area'].last_color)
 
-#        saved = self.children[:]
-#        self.painter.canvas.clear()
-
-#        self.clear_widgets()
-#        self.canvas.clear()
-#        for widget in saved:
-#            self.add_widget(widget)
-
-        #self.player1.clear_canvas()
+    def save_canvas(self):
+        # https://kivy.org/docs/api-kivy.core.window.html?highlight=screenshot#kivy.core.window.WindowBase.screenshot
+        Window.screenshot();    # スクリーンショットを保存する
+        #self.painter.export_to_png('a.png')    # 画像を保存する　ただしこのやり方だとウィンドウカラーが適用されないので描いていない部分が透明になる
 
 class ColorButton(ToggleButton):
     def _do_press(self):
