@@ -23,10 +23,18 @@ from kivy.core.window import Window
 #:import color kivy.utils.get_color_from_hex
 
 
+#・線の太さの設定
+#・起動時の色の設定
+#・クリアー時の色の設定
+#・保存
+#・消しゴム
+
+
 class MyPaintWidget(Widget):
     #pass
     last_color = '' # 画面クリアを押された場合の最後の色
-    
+    line_width = 3  # 線の太さ
+
     def on_touch_down(self, touch):
         if Widget.on_touch_down(self, touch):
             return
@@ -37,10 +45,14 @@ class MyPaintWidget(Widget):
             #Color(*color, mode='hsv')
             d = 30.
             Ellipse(pos=(touch.x - d / 2, touch.y - d / 2), size=(d, d))
-            touch.ud['line'] = Line(points=(touch.x, touch.y))
+            touch.ud['line'] = Line(points=(touch.x, touch.y), width=self.line_width)
+
+    def set_line_width(self, line_width=3):
+        self.line_width = line_width
 
     def on_touch_move(self, touch):
-        touch.ud['line'].points += [touch.x, touch.y]
+        if touch.ud:    # スライダーを動かす際のエラーを解除するため
+            touch.ud['line'].points += [touch.x, touch.y]
 
     def set_color(self, new_color):
         self.last_color = new_color
