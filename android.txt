@@ -1,0 +1,3 @@
+title=Paint app
+author=Jun Okazaki
+orientation=landscape

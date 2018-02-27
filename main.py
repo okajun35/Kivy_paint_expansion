@@ -98,6 +98,7 @@ class MyPaintApp(App):
         #self.painter.ids['paint_area'].set_color(self.painter.ids['paint_area'].last_color)
 
     def save_canvas(self):
+        # 時間があるときに一時的にcanvas.beforeに背景を塗り潰す処理を加えるの
         # https://kivy.org/docs/api-kivy.core.window.html?highlight=screenshot#kivy.core.window.WindowBase.screenshot
         Window.screenshot();    # スクリーンショットを保存する
         #self.painter.export_to_png('a.png')    # 画像を保存する　ただしこのやり方だとウィンドウカラーが適用されないので描いていない部分が透明になる
