@@ -6,8 +6,12 @@
     group: 'color'
     border: (5, 5, 5, 5)
     on_release: app.painter.ids['paint_area'].set_color(self.background_color)
-
+    #on_release: app.painter.paint_id.set_color(self.background_color) # この方法でもset_corlorにアクセス可能
 <MyCanvasWidget>:
+    paint_id:paint_area
+    id: canvas_area
+
+    test:button1
     Button:
         text: 'save'
         color: 1, 1, 1 , 1
@@ -24,7 +28,6 @@
         height: root.height
 
         width: root.width
-
         MyPaintWidget:
             id: paint_area
             size_hint_y: 0.8
@@ -47,7 +50,7 @@
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y: 0.1
-            
+            clear_btn:button1
             Button:
                 id: button1
                 text: "Clear"

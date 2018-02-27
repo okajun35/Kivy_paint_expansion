@@ -59,14 +59,13 @@ class MyPaintWidget(Widget):
 class MyCanvasWidget(Widget):
 
     def clear_canvas(self):
-  
         #self.painter.canvas.clear()
         MyPaintWidget.clear_canvas(self)
 
 
 class MyPaintApp(App):
-    paint_id = ObjectProperty(None)
-
+    #paint_id = ObjectProperty(None)
+    #self.painter.test # これでClearボタンにアクセス可能
 
     def __init__(self, **kwargs):
         super(MyPaintApp, self).__init__(**kwargs)
@@ -95,7 +94,7 @@ class MyPaintApp(App):
     def clear_canvas(self):
         # 削除
         #print(self.paint_id)
-        self.painter.ids['paint_area'].canvas.clear()
+        self.ids['paint_area'].canvas.clear()
         #self.painter.ids['paint_area'].set_color(self.painter.ids['paint_area'].last_color)
 
     def save_canvas(self):
