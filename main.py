@@ -51,15 +51,9 @@ class MyPaintWidget(Widget):
         self.canvas.add(Color(*new_color))
 
 
-
-
-
-
-
 class MyCanvasWidget(Widget):
 
     def clear_canvas(self):
-        #self.painter.canvas.clear()
         MyPaintWidget.clear_canvas(self)
 
 
@@ -92,10 +86,13 @@ class MyPaintApp(App):
 
     #def clear_canvas(self, obj):
     def clear_canvas(self):
-        # 削除
-        #print(self.paint_id)
-        self.ids['paint_area'].canvas.clear()
-        #self.painter.ids['paint_area'].set_color(self.painter.ids['paint_area'].last_color)
+        '''
+        画面をきれいにする。行うことは以下の2点
+        1:画面をクリアーにする
+        2:最後にセットしていた色をセットしなおす
+        ''' 
+        self.painter.ids['paint_area'].canvas.clear()
+        self.painter.ids['paint_area'].set_color(self.painter.ids['paint_area'].last_color)
 
     def save_canvas(self):
         # 時間があるときに一時的にcanvas.beforeに背景を塗り潰す処理を加えるの
