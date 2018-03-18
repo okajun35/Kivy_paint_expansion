@@ -47,6 +47,7 @@ class MyPaintWidget(Widget):
             touch.ud['line'].points += [touch.x, touch.y]
 
     def set_color(self, new_color):
+        ''' 塗る色を変更する '''
         self.last_color = new_color
         self.canvas.add(Color(*new_color))
 
