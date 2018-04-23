@@ -31,8 +31,7 @@ class MyPaintWidget(Widget):
         if Widget.on_touch_down(self, touch):
             return
 
-
-        color = (random(), 1, 1)
+        # color = (random(), 1, 1)
         with self.canvas:
             #Color(*color, mode='hsv')
             #d = 30.
